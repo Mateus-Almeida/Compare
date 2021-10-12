@@ -19,12 +19,14 @@ namespace Compare
         public void clear() {
             bt_compare.UseVisualStyleBackColor = true;
             bt_compare.FlatStyle = FlatStyle.Standard;
-            bt_compare.FlatAppearance.BorderSize = 1;
+            bt_compare.FlatAppearance.BorderSize = 0;
             bt_compare.ForeColor = Color.Black;
-        } 
+            bt_compare.FlatAppearance.BorderColor = Color.FromArgb(0, 255, 255, 255);
+        }
         public void tbcode1_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Enter) {
+            clear();
+            if (e.KeyCode == Keys.Enter) {
                 SendKeys.Send("{TAB}");
             }
         }
@@ -40,24 +42,28 @@ namespace Compare
         public void comparar()
         {
             clear();
-            string code1 = tbcode1.Text;
-            string code2 = tbcode2.Text;
 
-            if (code1 == code2 && code1.Equals(code2))
-            {
+            if (tbcode1.Text == tbcode2.Text)
+            { 
                 bt_compare.BackColor = Color.LightGreen;
                 bt_compare.FlatStyle = FlatStyle.Flat;
                 bt_compare.FlatAppearance.BorderSize = 0;
+                MessageBox.Show("Certo");
             }
             else
             {
                 bt_compare.BackColor = Color.FromArgb(255, 33, 37);
                 bt_compare.FlatStyle = FlatStyle.Flat;
                 bt_compare.FlatAppearance.BorderSize = 0;
+                MessageBox.Show("Errado");
             }
             tbcode1.Clear();
             tbcode2.Clear();
+        }
 
+        private void bt_compare_Click(object sender, EventArgs e)
+        {
+            comparar();
         }
     }
 }
